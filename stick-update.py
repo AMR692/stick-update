@@ -48,6 +48,10 @@ try:
 			if not filePath:
 				continue
 			
+			# Skip .DS_Store files
+			if os.path.basename(filePath) == ".DS_Store":
+				continue
+			
 			# Expand user home directory (~)
 			filePath = os.path.expanduser(filePath)
 			
@@ -102,6 +106,9 @@ print(f"Using working directory: {workingDir}")
 # Get list of all files and .app directories in working directory
 workingDirFiles = []
 for item in os.listdir(workingDir):
+	# Skip .DS_Store files
+	if item == ".DS_Store":
+		continue
 	itemPath = os.path.join(workingDir, item)
 	if os.path.isfile(itemPath) or (item.endswith('.app') and os.path.isdir(itemPath)):
 		workingDirFiles.append(item)
