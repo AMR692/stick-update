@@ -7,9 +7,11 @@ import shutil
 # Parse command line arguments
 parser = argparse.ArgumentParser(description='Update stick with specified working directory')
 parser.add_argument('directory', help='Path to an available, working directory')
+parser.add_argument('-n', '--dry-run', action='store_true', help='Print what would be done without making changes')
 args = parser.parse_args()
 
 workingDir = args.directory
+isDryRun = args.dry_run
 
 # Verify the directory exists and is accessible
 if not os.path.exists(workingDir):
@@ -98,11 +100,14 @@ for filePath in filePaths:
 	if not os.path.exists(workingFilePath):
 		print(f"{basename}: missing")
 		# Copy from manifest location to working directory
-		if basename.endswith('.app'):
-			shutil.copytree(filePath, workingFilePath)
+		if not isDryRun:
+			if basename.endswith('.app'):
+				shutil.copytree(filePath, workingFilePath)
+			else:
+				shutil.copy2(filePath, workingFilePath)
+			print(f"Copied {basename} to working directory")
 		else:
-			shutil.copy2(filePath, workingFilePath)
-		print(f"Copied {basename} to working directory")
+			print(f"Would copy {basename} to working directory")
 		continue
 	
 	# Compare modification times
@@ -112,12 +117,15 @@ for filePath in filePaths:
 	if workingTime < manifestTime:
 		print(f"{basename}: needs update")
 		# Remove old version and copy new one
-		if basename.endswith('.app'):
-			shutil.rmtree(workingFilePath)
-			shutil.copytree(filePath, workingFilePath)
+		if not isDryRun:
+			if basename.endswith('.app'):
+				shutil.rmtree(workingFilePath)
+				shutil.copytree(filePath, workingFilePath)
+			else:
+				shutil.copy2(filePath, workingFilePath)
+			print(f"Updated {basename} in working directory")
 		else:
-			shutil.copy2(filePath, workingFilePath)
-		print(f"Updated {basename} in working directory")
+			print(f"Would update {basename} in working directory")
 	elif workingTime > manifestTime:
 		print(f"{basename}: newer")
 	else:
@@ -134,12 +142,18 @@ for fileName in workingDirFiles:
 if filesToMove:
 	# Create extra directory if it doesn't exist
 	if not os.path.exists(extraDir):
-		os.makedirs(extraDir)
-		print("Created 'extra' directory")
+		if not isDryRun:
+			os.makedirs(extraDir)
+			print("Created 'extra' directory")
+		else:
+			print("Would create 'extra' directory")
 	
 	# Move files to extra directory
 	for fileName in filesToMove:
 		sourcePath = os.path.join(workingDir, fileName)
 		destPath = os.path.join(extraDir, fileName)
-		shutil.move(sourcePath, destPath)
-		print(f"{fileName}: not in manifest - moved to extra/")
+		if not isDryRun:
+			shutil.move(sourcePath, destPath)
+			print(f"{fileName}: not in manifest - moved to extra/")
+		else:
+			print(f"{fileName}: not in manifest - would move to extra/")
