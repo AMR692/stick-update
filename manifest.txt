@@ -1,0 +1,16 @@
+/Applications/AppCleaner.app
+./Command Line Tools.pkg
+~/GitHub/install-scripts/dummy-jamf-cisco.sh
+./Extensis Connect Uninstaller.app
+~/GitHub/install-scripts/firefox-install.sh
+./JamfConnectUninstall.sh
+~/GitHub/install-scripts/keyshot-install.zsh
+~/GitHub/install-scripts/m365-install.py
+./Microsoft_Office_Reset_1.9.1.pkg
+~/GitHub/install-scripts/miro-install.sh
+./onedrive-name-fix.sh
+/Applications/OnyX.app
+./rename-user.sh
+~/GitHub/install-scripts/slack-install.sh
+./uninstall-utc.command
+./Universal PostScript.pkg

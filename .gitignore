@@ -1,0 +1,8 @@
+.DS_Store
+*.app
+*.command
+*.pkg
+*.sh
+*.zsh
+DC Postinstall
+m365-install.py
