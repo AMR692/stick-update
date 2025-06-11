@@ -6,7 +6,7 @@ import shutil
 import sys
 
 # Parse command line arguments
-parser = argparse.ArgumentParser(description='Update stick with specified working directory')
+parser = argparse.ArgumentParser(description='Compares manifest.txt with given directory and updates the given directory')
 parser.add_argument('directory', nargs='?', help='Path to an available, working directory')
 
 # Create mutually exclusive group for audit and dry-run flags
