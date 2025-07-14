@@ -1,6 +1,7 @@
 ./Command Line Tools.pkg
 ./Extensis Connect Uninstaller.app
 ./JamfConnectUninstall.sh
+./MailToOutlook_2.0.pkg
 ./Microsoft_Office_Reset_1.9.1.pkg
 ./onedrive-name-fix.sh
 ./rename-user.sh
