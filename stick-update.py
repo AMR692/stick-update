@@ -63,7 +63,7 @@ try:
 			# Check if it's a .app (should be directory) or regular file
 			if filePath.endswith('.app'):
 				if not os.path.isdir(filePath):
-					print(f"Error: Path '{filePath}' on line {lineNumber} should be a directory (.app)")
+					print(f"Error: Path '{filePath}' on line {lineNumber} is not an application")
 					sys.exit(1)
 			else:
 				if not os.path.isfile(filePath):
@@ -72,16 +72,16 @@ try:
 			
 			# Add to array
 			filePaths.append(filePath)
-			print(f"Validated: {filePath}")
+			if args.audit:
+				print(f"Validated: {filePath}")
 
 except IOError as e:
 	print(f"Error reading manifest.txt: {e}")
 	sys.exit(1)
 
-print(f"All {len(filePaths)} files in manifest.txt validated successfully")
-
 # If in audit mode, we're done
 if args.audit:
+	print(f"All {len(filePaths)} files in manifest.txt validated successfully")
 	sys.exit(0)
 
 # Continue with normal operation
@@ -100,8 +100,6 @@ if not os.path.isdir(workingDir):
 if not os.access(workingDir, os.R_OK | os.W_OK):
 	print(f"Error: Directory '{workingDir}' is not accessible for read/write")
 	sys.exit(1)
-
-print(f"Using working directory: {workingDir}")
 
 # Get list of all files and .app directories in working directory
 workingDirFiles = []
@@ -141,7 +139,7 @@ for filePath in filePaths:
 	manifestTime = os.path.getmtime(filePath)
 	workingTime = os.path.getmtime(workingFilePath)
 	
-	if workingTime < manifestTime:
+	if int(workingTime) < int(manifestTime):
 		print(f"{basename}: needs update")
 		# Remove old version and copy new one
 		if not isDryRun:
