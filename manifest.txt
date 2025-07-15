@@ -1,3 +1,4 @@
+/opt/homebrew/bin/dockutil
 ./Command Line Tools.pkg
 ./Extensis Connect Uninstaller.app
 ./JamfConnectUninstall.sh
@@ -9,6 +10,7 @@
 ./Universal PostScript.pkg
 /Applications/AppCleaner.app
 /Applications/OnyX.app
+~/GitHub/install-scripts/default-dock.sh
 ~/GitHub/install-scripts/dummy-jamf-cisco.sh
 ~/GitHub/install-scripts/firefox-install.sh
 ~/GitHub/install-scripts/keyshot-install.zsh
