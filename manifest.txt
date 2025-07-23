@@ -1,3 +1,4 @@
+/opt/homebrew/bin/defaultbrowser
 /opt/homebrew/bin/dockutil
 ./Command Line Tools.pkg
 ./Extensis Connect Uninstaller.app
