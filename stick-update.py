@@ -152,9 +152,9 @@ for filePath in filePaths:
 		else:
 			print(f"Would update {basename} in working directory")
 	elif workingTime > manifestTime:
-		print(f"{basename}: newer")
+		print(f"\x1B[3m{basename}: newer\x1B[0m")
 	else:
-		print(f"{basename}: up-to-date")
+		print(f"\x1B[3m{basename}: up-to-date\x1B[0m")
 
 # Check for files in working directory not in manifest
 extraDir = os.path.join(workingDir, "extra")
