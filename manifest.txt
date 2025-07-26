@@ -11,6 +11,7 @@
 ./Universal PostScript.pkg
 /Applications/AppCleaner.app
 /Applications/OnyX.app
+~/GitHub/amr-it-tools/pepsi-checkup.sh
 ~/GitHub/install-scripts/default-dock.sh
 ~/GitHub/install-scripts/dummy-jamf-cisco.sh
 ~/GitHub/install-scripts/firefox-install.sh
