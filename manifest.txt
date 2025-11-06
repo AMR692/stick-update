@@ -11,7 +11,8 @@
 ./uninstall-utc.command
 ./Universal PostScript.pkg
 /Applications/AppCleaner.app
-/Applications/OnyX.app
+/Applications/OnyX Sequoia.app
+/Applications/OnyX Tahoe.app
 ~/GitHub/amr-it-tools/pepsi-checkup.sh
 ~/GitHub/install-scripts/default-dock.sh
 ~/GitHub/install-scripts/dummy-jamf-cisco.sh
