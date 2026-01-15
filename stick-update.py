@@ -6,13 +6,17 @@ import shutil
 import sys
 
 # Parse command line arguments
-parser = argparse.ArgumentParser(description='Compares manifest.txt with given directory and updates the given directory')
+parser = argparse.ArgumentParser(description='Compares manifest file with given directory and updates the given directory')
 parser.add_argument('directory', nargs='?', help='Path to an available, working directory')
+
+# Add manifest file option
+parser.add_argument('-m', '--manifest', default='00manifest.txt',
+                   help='Path to manifest file (default: 00manifest.txt)')
 
 # Create mutually exclusive group for audit and dry-run flags
 group = parser.add_mutually_exclusive_group()
 group.add_argument('-n', '--dry-run', action='store_true', help='Print what would be done without making changes')
-group.add_argument('-a', '--audit', action='store_true', help='Audit manifest.txt entries without making changes')
+group.add_argument('-a', '--audit', action='store_true', help='Audit manifest file entries without making changes')
 
 args = parser.parse_args()
 
@@ -25,14 +29,14 @@ if not args.audit and not args.directory:
 	print("Error: directory argument is required unless using --audit")
 	sys.exit(1)
 
-# Check for manifest.txt in current directory
-manifestPath = "manifest.txt"
+# Check for manifest file
+manifestPath = args.manifest
 if not os.path.exists(manifestPath):
-	print("Error: manifest.txt not found in current directory")
+	print(f"Error: Manifest file '{manifestPath}' not found")
 	sys.exit(1)
 
 if not os.path.isfile(manifestPath):
-	print("Error: manifest.txt is not a file")
+	print(f"Error: '{manifestPath}' is not a file")
 	sys.exit(1)
 
 # Read and validate each path in manifest.txt
@@ -76,12 +80,12 @@ try:
 				print(f"Validated: {filePath}")
 
 except IOError as e:
-	print(f"Error reading manifest.txt: {e}")
+	print(f"Error reading manifest file '{manifestPath}': {e}")
 	sys.exit(1)
 
 # If in audit mode, we're done
 if args.audit:
-	print(f"All {len(filePaths)} files in manifest.txt validated successfully")
+	print(f"All {len(filePaths)} files in '{manifestPath}' validated successfully")
 	sys.exit(0)
 
 # Continue with normal operation
