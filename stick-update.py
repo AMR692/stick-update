@@ -22,8 +22,7 @@ args = parser.parse_args()
 
 # Validate argument combinations
 if args.audit and args.directory:
-	print("Error: --audit does not require a directory argument")
-	sys.exit(1)
+	print("Warning: --audit ignores the directory argument")
 
 if not args.audit and not args.directory:
 	print("Error: directory argument is required unless using --audit")
