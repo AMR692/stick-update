@@ -15,6 +15,7 @@
 /Applications/OnyX Tahoe.app
 ~/GitHub/amr-it-tools/pepsi-checkup.sh
 ~/GitHub/install-scripts/default-dock.sh
+~/GitHub/install-scripts/dock-paths.txt
 ~/GitHub/install-scripts/dummy-jamf-cisco.sh
 ~/GitHub/install-scripts/firefox-install.sh
 ~/GitHub/install-scripts/keyshot-install.zsh
